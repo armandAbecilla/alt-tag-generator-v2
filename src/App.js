@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Button, Container } from "semantic-ui-react";
+import "./App.css";
+import AltTagList from "./components/AltTagList";
+import { Provider, Consumer } from "./context";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import uuid from "uuid";
+
+class App extends Component {
+  handleCreateForm = dispatch => {
+    const newTagForm = {
+      id: uuid(),
+      keywords: "",
+      location: ""
+    };
+
+    dispatch({
+      type: "CREATE_GENERATE_TAG_FORM",
+      payload: newTagForm
+    });
+  };
+
+  render() {
+    return (
+      <Provider>
+        <Consumer>
+          {value => {
+            const { dispatch } = value;
+            return (
+              <Container>
+                <h1 style={styles}>Alt Tag Generator V2</h1>
+                <Button onClick={() => this.handleCreateForm(dispatch)}>
+                  Add
+                </Button>
+                <AltTagList />
+              </Container>
+            );
+          }}
+        </Consumer>
+      </Provider>
+    );
+  }
 }
+
+const styles = {
+  margin: "25px 0",
+  color: "#FF9800"
+};
 
 export default App;
