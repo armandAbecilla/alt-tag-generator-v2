@@ -3,6 +3,7 @@ import { Button, Container } from "semantic-ui-react";
 import "./App.css";
 import AltTagList from "./components/AltTagList";
 import { Provider, Consumer } from "./context";
+import Footer from "./components/Footer";
 
 import uuid from "uuid";
 
@@ -27,16 +28,22 @@ class App extends Component {
           {value => {
             const { dispatch } = value;
             return (
-              <Container>
+              <Container
+                style={{
+                  display: "flex",
+                  minHeight: "100vh",
+                  flexDirection: "column",
+                  justifyContent: "flex-start"
+                }}
+              >
                 <h1 style={styles}>Alt Tag Generator V2</h1>
-                <Button onClick={() => this.handleCreateForm(dispatch)}>
-                  Add
-                </Button>
+                <Button onClick={() => this.handleCreateForm(dispatch)}>Add</Button>
                 <AltTagList />
               </Container>
             );
           }}
         </Consumer>
+        <Footer />
       </Provider>
     );
   }
