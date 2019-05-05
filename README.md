@@ -11,4 +11,4 @@ In the project directory, you can run:
 
 ## You can visit the live site:
 
-https://app.netlify.com/sites/thryvtool-v2
+https://thryvtool-v2.netlify.com/
