@@ -42,7 +42,6 @@ class App extends Component {
                   color="teal"
                   content="Add New Form"
                 />
-
                 <AltTagList />
               </Container>
             );

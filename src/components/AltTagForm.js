@@ -39,7 +39,8 @@ class AltTagForm extends Component {
     this.setState({
       keywords: keywords,
       location: location,
-      altTags: this.generateTags()
+      altTags: this.generateTags(),
+      visible: false
     });
   };
 
@@ -83,17 +84,20 @@ class AltTagForm extends Component {
                   readonly=""
                 />
 
-                <Button color="green" type="submit">
-                  Generate
-                </Button>
+                <Button
+                  color="green"
+                  type="submit"
+                  icon="circle outline"
+                  content="Generate"
+                />
+
                 <Button
                   style={{ float: "right" }}
-                  icon="close icon"
+                  icon="trash"
                   color="red"
                   onClick={e => this.handleDelete(e, this.props.id, dispatch)}
-                >
-                  Remove
-                </Button>
+                  content="Remove"
+                />
               </Form>
             </Segment>
           );

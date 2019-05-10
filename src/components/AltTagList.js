@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AltTagForm from "./AltTagForm";
 import { Consumer } from "../context";
-
 class AltTagList extends Component {
   render() {
     return (
