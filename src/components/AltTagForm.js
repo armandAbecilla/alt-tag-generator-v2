@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Segment, Form, Button, Input, TextArea } from "semantic-ui-react";
+import { Consumer } from "../context";
 
 class AltTagForm extends Component {
   state = {
@@ -22,7 +23,9 @@ class AltTagForm extends Component {
     const splittedKeyWords = this.state.keywords.split(",");
 
     let altText = splittedKeyWords.map(tags => {
-      return this.capitalize(tags).trim() + " — in " + this.state.location + " \n";
+      return (
+        this.capitalize(tags).trim() + " — in " + this.state.location + " \n"
+      );
     });
 
     return altText.join("");
@@ -40,37 +43,62 @@ class AltTagForm extends Component {
     });
   };
 
+  handleDelete = (e, id, dispatch) => {
+    e.preventDefault();
+    dispatch({
+      type: "DELETE_GENERATE_TAG_FORM",
+      payload: id
+    });
+  };
+
   render() {
-    console.log(this.generateTags());
     return (
-      <Segment>
-        <Form onSubmit={e => this.handleGenerateTags(e)}>
-          <Form.Field
-            control={Input}
-            required="required"
-            name="keywords"
-            placeholder="Keywords"
-            value={this.state.keywords}
-            onChange={this.handleChange}
-          />
-          <Form.Field
-            control={Input}
-            name="location"
-            required="required"
-            placeholder="Location"
-            value={this.state.location}
-            onChange={this.handleChange}
-          />
-          <Form.Field
-            control={TextArea}
-            style={{ minHeight: 150 }}
-            placeholder="Result"
-            defaultValue={this.state.altTags}
-            readonly=""
-          />
-          <Form.Field control={Button}>Generate </Form.Field>
-        </Form>
-      </Segment>
+      <Consumer>
+        {value => {
+          const { dispatch } = value;
+          return (
+            <Segment>
+              <Form onSubmit={e => this.handleGenerateTags(e)}>
+                <Form.Field
+                  control={Input}
+                  required="required"
+                  name="keywords"
+                  placeholder="Keywords"
+                  value={this.state.keywords}
+                  onChange={this.handleChange}
+                />
+                <Form.Field
+                  control={Input}
+                  name="location"
+                  required="required"
+                  placeholder="Location"
+                  value={this.state.location}
+                  onChange={this.handleChange}
+                />
+                <Form.Field
+                  control={TextArea}
+                  style={{ minHeight: 150 }}
+                  placeholder="Result"
+                  defaultValue={this.state.altTags}
+                  readonly=""
+                />
+
+                <Button color="green" type="submit">
+                  Generate
+                </Button>
+                <Button
+                  style={{ float: "right" }}
+                  icon="close icon"
+                  color="red"
+                  onClick={e => this.handleDelete(e, this.props.id, dispatch)}
+                >
+                  Remove
+                </Button>
+              </Form>
+            </Segment>
+          );
+        }}
+      </Consumer>
     );
   }
 }

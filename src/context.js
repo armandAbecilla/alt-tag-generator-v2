@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import uuid from "uuid";
 const Context = React.createContext();
 
 const reducer = (state, action) => {
@@ -8,6 +8,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         forms: [action.payload, ...state.forms]
+      };
+    case "DELETE_GENERATE_TAG_FORM":
+      return {
+        ...state,
+        forms: state.forms.filter(form => form.id !== action.payload)
       };
     default:
       return state;
@@ -18,7 +23,7 @@ export class Provider extends Component {
   state = {
     forms: [
       {
-        id: "",
+        id: "" || uuid(),
         keywords: "",
         location: ""
       }

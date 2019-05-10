@@ -12,7 +12,7 @@ class AltTagList extends Component {
             <React.Fragment>
               <h4>Alt tag generator (Separate each Keyword by comma)</h4>
               {forms.map(form => (
-                <AltTagForm key={form.id} altTagData={form} />
+                <AltTagForm key={form.id} id={form.id} altTagData={form} />
               ))}
             </React.Fragment>
           );

@@ -30,16 +30,19 @@ class App extends Component {
             return (
               <Container
                 style={{
-                  display: "flex",
                   minHeight: "100vh",
                   flexDirection: "column",
                   justifyContent: "flex-start"
                 }}
               >
                 <h1 style={styles}>Alt Tag Generator V2</h1>
-                <Button onClick={() => this.handleCreateForm(dispatch)}>
-                  Add
-                </Button>
+                <Button
+                  onClick={() => this.handleCreateForm(dispatch)}
+                  icon="plus"
+                  color="teal"
+                  content="Add New Form"
+                />
+
                 <AltTagList />
               </Container>
             );
