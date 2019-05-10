@@ -37,7 +37,9 @@ class App extends Component {
                 }}
               >
                 <h1 style={styles}>Alt Tag Generator V2</h1>
-                <Button onClick={() => this.handleCreateForm(dispatch)}>Add</Button>
+                <Button onClick={() => this.handleCreateForm(dispatch)}>
+                  Add
+                </Button>
                 <AltTagList />
               </Container>
             );
