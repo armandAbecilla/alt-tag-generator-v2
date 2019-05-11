@@ -96,7 +96,6 @@ class AltTagForm extends Component {
                   icon="trash"
                   color="red"
                   onClick={e => this.handleDelete(e, this.props.id, dispatch)}
-                  content="Remove"
                 />
               </Form>
             </Segment>
