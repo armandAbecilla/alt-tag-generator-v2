@@ -39,8 +39,7 @@ class AltTagForm extends Component {
     this.setState({
       keywords: keywords,
       location: location,
-      altTags: this.generateTags(),
-      visible: false
+      altTags: this.generateTags()
     });
   };
 
@@ -62,7 +61,7 @@ class AltTagForm extends Component {
               <Form onSubmit={e => this.handleGenerateTags(e)}>
                 <Form.Field
                   control={Input}
-                  required="required"
+                  required={true}
                   name="keywords"
                   placeholder="Keywords"
                   value={this.state.keywords}
@@ -71,7 +70,7 @@ class AltTagForm extends Component {
                 <Form.Field
                   control={Input}
                   name="location"
-                  required="required"
+                  required={true}
                   placeholder="Location"
                   value={this.state.location}
                   onChange={this.handleChange}
@@ -81,7 +80,7 @@ class AltTagForm extends Component {
                   style={{ minHeight: 150 }}
                   placeholder="Result"
                   defaultValue={this.state.altTags}
-                  readonly=""
+                  readOnly
                 />
 
                 <Button
