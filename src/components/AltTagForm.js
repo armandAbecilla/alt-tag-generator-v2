@@ -15,7 +15,7 @@ class AltTagForm extends Component {
     });
   };
 
-  capitalize(str) {
+  capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
@@ -24,7 +24,7 @@ class AltTagForm extends Component {
 
     let altText = splittedKeyWords.map(tags => {
       return (
-        this.capitalize(tags).trim() + " — in " + this.state.location + " \n"
+        this.capitalize(tags.trim()) + " — in " + this.capitalize(this.state.location) + " \n"
       );
     });
 
